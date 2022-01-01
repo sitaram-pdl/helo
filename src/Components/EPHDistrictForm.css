@@ -1,0 +1,83 @@
+.container {
+  width: 100vw;
+  height: 100vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+.ehp-district-table1 {
+  width: 70vw;
+}
+
+.sub-container {
+  position: relative;
+  width: calc(100%-8em);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+
+  background-color: white;
+  margin: 3em 4em 4em 4em;
+}
+.header {
+  margin: 2em 0;
+}
+
+@media (max-width: 800px) {
+  .ehp-district-table1 {
+    transform: scale(0.5);
+    margin-top: -8em;
+  }
+}
+@media (max-width: 500px) {
+  .ehp-district-table1 {
+    transform: scale(0.3);
+    margin-top: -10em;
+  }
+}
+.row {
+}
+
+.row:hover.row {
+  background-color: gray !important;
+  cursor: pointer;
+}
+.modal {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(90, 84, 84, 0.387);
+}
+.modal-absolute {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  z-index: 9999;
+}
+.modal-Contain {
+  width: 60vw;
+  height: 60vh;
+  background-color: rgb(255, 255, 255);
+  border-radius: 5px;
+  z-index: 99999;
+  animation: example 0.2s;
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+}
+@keyframes example {
+  from {
+    margin: -4em 00 0 0;
+    transform: scale(1.2);
+  }
+  to {
+    margin: 0;
+    transform: scale(1);
+  }
+}
