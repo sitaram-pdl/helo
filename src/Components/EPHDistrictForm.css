@@ -45,39 +45,5 @@
   background-color: gray !important;
   cursor: pointer;
 }
-.modal {
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  top: 0;
-  left: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(90, 84, 84, 0.387);
-}
-.modal-absolute {
-  width: 100vw;
-  height: 100vh;
-  position: absolute;
-  z-index: 9999;
-}
-.modal-Contain {
-  width: 60vw;
-  height: 60vh;
-  background-color: rgb(255, 255, 255);
-  border-radius: 5px;
-  z-index: 99999;
-  animation: example 0.2s;
-  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
-}
-@keyframes example {
-  from {
-    margin: -4em 00 0 0;
-    transform: scale(1.2);
-  }
-  to {
-    margin: 0;
-    transform: scale(1);
-  }
-}
+
+/**modal styling */

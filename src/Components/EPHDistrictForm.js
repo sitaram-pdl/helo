@@ -2,10 +2,12 @@ import { useState, useEffect } from "react";
 import "./EPHDistrictForm.css";
 import Navigation from "./Navigation";
 import { getAllAddress } from "./../api/APIUtils";
+import { RenderModalContain } from "./EPHDistrictFormComponents/editDeleteFormModal";
 
 export const EPHDistrictForm = () => {
   const [data, setdata] = useState([]);
   const [modal, setmodal] = useState(false);
+  const [modalData, setModalData] = useState({});
   const handleModal = () => {
     setmodal((prev) => !prev);
   };
@@ -48,7 +50,10 @@ export const EPHDistrictForm = () => {
               <tbody
                 style={i % 2 != 0 ? { backgroundColor: "#ddd" } : null}
                 className="row"
-                onClick={handleModal}
+                onClick={() => {
+                  handleModal();
+                  setModalData(item);
+                }}
               >
                 <tr>
                   <td>{item.name}</td>
@@ -68,12 +73,16 @@ export const EPHDistrictForm = () => {
         {modal && (
           <div className="modal">
             <div className="modal-absolute" onClick={handleModal} />
-            <div className="modal-Contain">{renderModalContain()}</div>
+            <div className="modal-Contain">
+              {/* {RenderModalContain(modalData, handleModal)} */}
+              <RenderModalContain
+                modalData={modalData}
+                handleModal={handleModal}
+              />
+            </div>
           </div>
         )}
       </div>
     </div>
   );
 };
-
-const renderModalContain = () => <div className="contain">hello</div>;
