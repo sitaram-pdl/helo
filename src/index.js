@@ -11,6 +11,7 @@ ReactDOM.render(
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />} />
+
       <Route path="login" element={<Login />} />
       <Route path="admin-dashboard" element={<AdminDashBoard />} />
     </Routes>

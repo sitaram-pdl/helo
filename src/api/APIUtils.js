@@ -14,7 +14,8 @@ const axiosConfig = {
 };
 
 function getJWTHeaders() {
-  const token = localStorage.getItem("jwt");
+  const token = localStorage.getItem("JWT");
+  console.log(token);
   return {
     headers: {
       ...axiosConfig.headers,
@@ -36,6 +37,38 @@ export async function getAllAddress() {
     method: "get",
     url: FULL_URL + "/address",
     data: {},
+  });
+}
+
+export async function adduserdata(data, idd) {
+  return await axios({
+    method: "put",
+    url: FULL_URL + `/user/case/${idd}`,
+    data: data,
+
+    headers: {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+      Authorization: localStorage.getItem("JWT"),
+    },
+
+    accept: "*/*",
+  });
+}
+
+export async function addhealthworkerdatadata(data, idd) {
+  return await axios({
+    method: "put",
+    url: FULL_URL + `/user/case/${idd}`,
+    data: data,
+
+    headers: {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+      Authorization: localStorage.getItem("JWT"),
+    },
+
+    accept: "*/*",
   });
 }
 

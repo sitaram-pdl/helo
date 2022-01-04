@@ -72,36 +72,38 @@ const Login = () => {
   };
 
   return (
-    <div className="login">
-      <h1>Login</h1>
-      <input
-        type="text"
-        name="username"
-        value={user.username}
-        onChange={(e) => {
-          const name = { ...user };
-          name.username = e.target.value;
-          name.username.trim();
-          setUser(name);
-        }}
-        placeholder="Enter your username/Username"
-      />
-      <p id="error_username" />
-      <input
-        type="password"
-        name="password"
-        value={user.password}
-        onChange={(e) => {
-          const name = { ...user };
-          name.password = e.target.value;
-          name.password.trim();
-          setUser(name);
-        }}
-        placeholder="Enter your Password"
-      />
-      <p id="error_password" />
-      <div className="button" onClick={handleLogin}>
-        Login
+    <div className="container">
+      <div className="login">
+        <h1 style={{ color: "white" }}>Login</h1>
+        <input
+          type="text"
+          name="username"
+          value={user.username}
+          onChange={(e) => {
+            const name = { ...user };
+            name.username = e.target.value;
+            name.username.trim();
+            setUser(name);
+          }}
+          placeholder="Enter your username/Username"
+        />
+        <p id="error_username" />
+        <input
+          type="password"
+          name="password"
+          value={user.password}
+          onChange={(e) => {
+            const name = { ...user };
+            name.password = e.target.value;
+            name.password.trim();
+            setUser(name);
+          }}
+          placeholder="Enter your Password"
+        />
+        <p id="error_password" />
+        <div className="button" onClick={handleLogin}>
+          Login
+        </div>
       </div>
     </div>
   );

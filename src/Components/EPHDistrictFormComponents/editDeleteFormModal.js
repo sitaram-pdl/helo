@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import "./editDeleteForm.css";
-import { Tooltip, Input } from "antd";
+import { Tooltip, Input, Select } from "antd";
 import "antd/dist/antd.css";
 import { GiCancel } from "react-icons/gi";
-import { updateCases } from "./../../api/APIUtils";
+import { adduserdata, addhealthworkerdatadata } from "./../../api/APIUtils";
 const colorEven = {
   backgroundColor: "#aaa0",
 };
@@ -11,30 +11,32 @@ const colorEven = {
 const colorOdd = {
   backgroundColor: "#cccc",
 };
+const { Option } = Select;
 
 export const RenderModalContain = ({ modalData, handleModal }) => {
-  const [edit, setedit] = useState(null);
+  const [edit, setedit] = useState({});
   const [data, setDistrictData] = useState(modalData);
+  const [type, setType] = useState();
 
-  ///edit absolute function
+  const add = (type) => {
+    switch (type) {
+      case "Users":
+        adduserdata();
 
-  const handleUpdate = (datas) => {
-    const name = {};
-    name.activeToday = datas.activeToday;
-    name.deathToday = datas.deathToday;
-    name.recoveredToday = datas.recoveredToday;
-    name.testedToday = datas.testedToday;
+        break;
+      case "HealthWorkers":
+        addhealthworkerdatadata();
+        break;
 
-    name.vaccinatedToday = datas.vaccinatedToday;
-
-    updateCases(name, datas.id)
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err.response.data));
+      default:
+        alert("select options");
+        break;
+    }
   };
 
   const editAbsolute = () => {
     return (
-      <div className="edit-container-absolute">
+      <div>
         <div className="edit-container">
           <div placeholder="Basic usage" className="input-modal">
             Active Today
@@ -54,7 +56,7 @@ export const RenderModalContain = ({ modalData, handleModal }) => {
         </div>
         <div className="edit-container">
           <Input
-            placeholder="Basic usage"
+            placeholder="  Active Today"
             value={edit.activeToday}
             className="input-modal"
             onChange={(e) => {
@@ -62,7 +64,7 @@ export const RenderModalContain = ({ modalData, handleModal }) => {
             }}
           />
           <Input
-            placeholder="Basic usage"
+            placeholder=" Death Today"
             value={edit.deathToday}
             className="input-modal"
             onChange={(e) => {
@@ -70,7 +72,7 @@ export const RenderModalContain = ({ modalData, handleModal }) => {
             }}
           />{" "}
           <Input
-            placeholder="Basic usage"
+            placeholder=" Recovered Today"
             value={edit.recoveredToday}
             className="input-modal"
             onChange={(e) => {
@@ -78,7 +80,7 @@ export const RenderModalContain = ({ modalData, handleModal }) => {
             }}
           />{" "}
           <Input
-            placeholder="Basic usage"
+            placeholder=" Tested Today"
             value={edit.testedToday}
             className="input-modal"
             onChange={(e) => {
@@ -86,7 +88,7 @@ export const RenderModalContain = ({ modalData, handleModal }) => {
             }}
           />{" "}
           <Input
-            placeholder="Basic usage"
+            placeholder="Vaccinated Today"
             value={edit.vaccinatedToday}
             className="input-modal"
             onChange={(e) => {
@@ -94,73 +96,33 @@ export const RenderModalContain = ({ modalData, handleModal }) => {
             }}
           />
         </div>
-        <div
-          className="cancel-edit"
-          onClick={() => {
-            setedit(null);
-          }}
-        >
-          <GiCancel color="red" />
-        </div>
       </div>
     );
   };
-
-  //   const update = () => {
-  //     return;
-  //     const uD = { ...edit };
-  //     const name = {};
-  //     name.activeToday = uD.activeToday;
-  //     name.deathToday = uD.deathToday;
-  //     name.recoveredToday = uD.recoveredToday;
-  //     name.testedToday - uD.testedToday;
-  //     name.vaccinatedToday = uD.vaccinatedToday;
-  //     console.log(uD);
-  //   };
 
   return (
     <div className="contain">
       <div className="modal-body">
         <div className="capitalize">District Name: {data.name}</div>
-
-        <div className="modal-map-contain">
-          <div className="modal-table-row-header">
-            <div className="modal-table-col1">Active Today</div>
-            <div className="modal-table-col1">Death Today</div>
-            <div className="modal-table-col1">Recovered Today</div>
-            <div className="modal-table-col1">Tested Today</div>
-            <div className="modal-table-col1">Vaccinated Today</div>
-          </div>
-
-          {data.data.map((dat, i) => (
-            <Tooltip key={dat.i} placement="left" title="Click to edit">
-              <div
-                style={
-                  i % 2 == 0 ? (dat.id == edit?.id ? colorEven : {}) : colorOdd
-                }
-                className="modal-table-row-table-body"
-                onClick={() => {
-                  setedit(dat);
-                }}
-              >
-                <div className="modal-table-col2">{dat.activeToday}</div>
-                <div className="modal-table-col2">{dat.deathToday}</div>
-                <div className="modal-table-col2">{dat.recoveredToday}</div>
-                <div className="modal-table-col2">{dat.testedToday}</div>
-                <div className="modal-table-col2">{dat.vaccinatedToday}</div>
-              </div>
-            </Tooltip>
-          ))}
-        </div>
       </div>
-      {edit != null ? editAbsolute() : null}
-
+      <div>
+        <Select
+          style={{ width: 120 }}
+          allowClear
+          onChange={(e) => {
+            console.log(e);
+            setType(e);
+          }}
+        >
+          <Option value="Users">Users</Option>
+          <Option value="HealthWorkers">Health Worker</Option>
+        </Select>
+      </div>
+      {editAbsolute()}
       <div className="modal-bottom">
-        {edit != null ? (
-          <div className="button edit" onClick={() => handleUpdate(edit)}>
-            Update
-          </div>
-        ) : null}
+        <div className="button edit" onClick={() => add(type)}>
+          Add data
+        </div>
 
         <div className="button cancel" onClick={handleModal}>
           cancel

@@ -17,7 +17,7 @@
 }
 .modal-Contain {
   width: 60vw;
-  height: 60vh;
+  height: fit-content;
   background-color: rgb(255, 255, 255);
   border-radius: 5px;
   z-index: 99999;
@@ -42,7 +42,6 @@
 }
 
 .modal-bottom {
-  position: absolute;
   bottom: 0;
   width: 95%;
   display: flex;

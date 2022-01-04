@@ -23,7 +23,7 @@ export const EPHDistrictForm = () => {
       .catch((err) => console.log(err.response));
   }, []);
   return (
-    <div className="container">
+    <div className="container1">
       <>
         <Navigation />
       </>
@@ -74,7 +74,6 @@ export const EPHDistrictForm = () => {
           <div className="modal">
             <div className="modal-absolute" onClick={handleModal} />
             <div className="modal-Contain">
-              {/* {RenderModalContain(modalData, handleModal)} */}
               <RenderModalContain
                 modalData={modalData}
                 handleModal={handleModal}
